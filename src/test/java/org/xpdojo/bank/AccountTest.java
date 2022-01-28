@@ -54,4 +54,12 @@ public class AccountTest {
         assertThat(account1.balance()).isEqualTo(90);
         assertThat(account2.balance()).isEqualTo(10);
     }
+
+    @Test
+    public void printStatement_shouldPrintAllTransactionsWithDateAndTime() {
+        Account account = emptyAccount();
+        account.deposit(100);
+        account.withdraw(20);
+        assertThat(account.printStatement().size()).isEqualTo(2);
+    }
 }
