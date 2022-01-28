@@ -22,10 +22,25 @@ public class AccountTest {
     }
 
     @Test
-    public void depositMore() {
+    public void depositMultipleAmounts_shouldIncreaseBalanceByBothAmounts() {
         Account account = emptyAccount();
         account.deposit(10);
         account.deposit(20);
         assertThat(account.balance()).isEqualTo(30);
+    }
+
+    @Test
+    public void withdrawMoney_fromEmptyAccount() {
+        Account account = emptyAccount();
+        account.withdraw(10);
+        assertThat(account.balance()).isEqualTo(0);
+    }
+
+    @Test
+    public void withdrawMoney_shouldDecreaseBalance() {
+        Account account = emptyAccount();
+        account.deposit(100);
+        account.withdraw(20);
+        assertThat(account.balance()).isEqualTo(80);
     }
 }
