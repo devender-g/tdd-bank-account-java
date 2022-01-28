@@ -40,7 +40,18 @@ public class AccountTest {
     public void withdrawMoney_shouldDecreaseBalance() {
         Account account = emptyAccount();
         account.deposit(100);
-        account.withdraw(20);
+        int amount = account.withdraw(20);
+        assertThat(amount).isEqualTo(20);
         assertThat(account.balance()).isEqualTo(80);
+    }
+
+    @Test
+    public void transferMoney_shouldWithdrawFromOneAccount_AndAddedToAnother(){
+        Account account1 = emptyAccount();
+        account1.deposit(100);
+        Account account2 = emptyAccount();
+        account1.transfer(account2, 10);
+        assertThat(account1.balance()).isEqualTo(90);
+        assertThat(account2.balance()).isEqualTo(10);
     }
 }

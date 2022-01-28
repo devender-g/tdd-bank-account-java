@@ -18,9 +18,18 @@ public class Account {
         return balance;
     }
 
-    public void withdraw(int amount) {
+    public int withdraw(int amount) {
         if (balance >= amount) {
             balance -= amount;
+            return amount;
+        }
+        return -1;
+    }
+
+    public void transfer(Account account, int amount) {
+        if (balance >= amount){
+            int withdrawnAmount = this.withdraw(amount);
+            account.deposit(withdrawnAmount);
         }
     }
 }
