@@ -13,4 +13,19 @@ public class AccountTest {
 	public void initialAccount_hasZeroBalance() {
         assertThat(emptyAccount().balance()).isEqualTo(0);
     }
+
+    @Test
+    public void depositAmount_shouldIncreaseBalanceBySameAmount(){
+        Account account = emptyAccount();
+        account.deposit(10);
+        assertThat(account.balance()).isEqualTo(10);
+    }
+
+    @Test
+    public void depositMore() {
+        Account account = emptyAccount();
+        account.deposit(10);
+        account.deposit(20);
+        assertThat(account.balance()).isEqualTo(30);
+    }
 }
